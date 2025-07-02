@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="wrapper">
+
+        </div>
+    </div>
+    
+
+    <script>
+        const wadah = document.querySelector(".wrapper");
+
+        ambilJsonGtihub("https://raw.githubusercontent.com/noelao/json/refs/heads/main/hello.json");
+        async function ambilJsonGtihub(link) {
+            try {
+                const response = await fetch(link);
+                if(!response.ok){
+                    throw new Error("not ok, gwencana");
+                }
+
+                const hasil = await response.json();
+                console.log(hasil);
+                const isi = hasil.map(ini => {return ini.isi}).join(" ");
+
+                wadah.innerHTML = isi;
+            } catch(err) {
+                console.log(err);
+            } finally {
+
+            }
+        }
+    </script>
+</body>
+</html>
